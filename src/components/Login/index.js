@@ -12,7 +12,7 @@ export function Login({ from, to }) {
 
     return (
         <View className="auth-wrapper">
-            <Authenticator>
+            <Authenticator hideSignUp={true} socialProviders={['google']}>
                 {<Redirect to={to} from={from} />}
             </Authenticator>
         </View>
