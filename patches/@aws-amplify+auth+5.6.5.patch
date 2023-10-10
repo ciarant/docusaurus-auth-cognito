@@ -1,0 +1,87 @@
+diff --git a/node_modules/@aws-amplify/auth/lib-esm/Auth.js b/node_modules/@aws-amplify/auth/lib-esm/Auth.js
+index 1988a78..abef967 100644
+--- a/node_modules/@aws-amplify/auth/lib-esm/Auth.js
++++ b/node_modules/@aws-amplify/auth/lib-esm/Auth.js
+@@ -157,15 +157,15 @@ var AuthClass = /** @class */ (function () {
+             // **NOTE** - Remove this in a future major release as it is a breaking change
+             // Prevents _handleAuthResponse from being called multiple times in Expo
+             // See https://github.com/aws-amplify/amplify-js/issues/4388
+-            var usedResponseUrls_1 = {};
+-            urlListener(function (_a) {
+-                var url = _a.url;
+-                if (usedResponseUrls_1[url]) {
+-                    return;
+-                }
+-                usedResponseUrls_1[url] = true;
+-                _this._handleAuthResponse(url);
+-            });
++            // var usedResponseUrls_1 = {};
++            // urlListener(function (_a) {
++            //     var url = _a.url;
++            //     if (usedResponseUrls_1[url]) {
++            //         return;
++            //     }
++            //     usedResponseUrls_1[url] = true;
++            //     _this._handleAuthResponse(url);
++            // });
+         }
+         dispatchAuthEvent('configured', null, "The Auth category has been configured successfully");
+         if (!this.autoSignInInitiated &&
+diff --git a/node_modules/@aws-amplify/auth/lib/Auth.js b/node_modules/@aws-amplify/auth/lib/Auth.js
+index 9df2b83..bb1abf4 100644
+--- a/node_modules/@aws-amplify/auth/lib/Auth.js
++++ b/node_modules/@aws-amplify/auth/lib/Auth.js
+@@ -159,15 +159,15 @@ var AuthClass = /** @class */ (function () {
+             // **NOTE** - Remove this in a future major release as it is a breaking change
+             // Prevents _handleAuthResponse from being called multiple times in Expo
+             // See https://github.com/aws-amplify/amplify-js/issues/4388
+-            var usedResponseUrls_1 = {};
+-            urlListener_1.default(function (_a) {
+-                var url = _a.url;
+-                if (usedResponseUrls_1[url]) {
+-                    return;
+-                }
+-                usedResponseUrls_1[url] = true;
+-                _this._handleAuthResponse(url);
+-            });
++            // var usedResponseUrls_1 = {};
++            // urlListener_1.default(function (_a) {
++            //     var url = _a.url;
++            //     if (usedResponseUrls_1[url]) {
++            //         return;
++            //     }
++            //     usedResponseUrls_1[url] = true;
++            //     _this._handleAuthResponse(url);
++            // });
+         }
+         dispatchAuthEvent('configured', null, "The Auth category has been configured successfully");
+         if (!this.autoSignInInitiated &&
+diff --git a/node_modules/@aws-amplify/auth/src/Auth.ts b/node_modules/@aws-amplify/auth/src/Auth.ts
+index 685fff7..fe7e9db 100644
+--- a/node_modules/@aws-amplify/auth/src/Auth.ts
++++ b/node_modules/@aws-amplify/auth/src/Auth.ts
+@@ -252,15 +252,15 @@ export class AuthClass {
+ 			// **NOTE** - Remove this in a future major release as it is a breaking change
+ 			// Prevents _handleAuthResponse from being called multiple times in Expo
+ 			// See https://github.com/aws-amplify/amplify-js/issues/4388
+-			const usedResponseUrls = {};
+-			urlListener(({ url }) => {
+-				if (usedResponseUrls[url]) {
+-					return;
+-				}
+-
+-				usedResponseUrls[url] = true;
+-				this._handleAuthResponse(url);
+-			});
++			// const usedResponseUrls = {};
++			// urlListener(({ url }) => {
++			// 	if (usedResponseUrls[url]) {
++			// 		return;
++			// 	}
++
++			// 	usedResponseUrls[url] = true;
++			// 	this._handleAuthResponse(url);
++			// });
+ 		}
+ 
+ 		dispatchAuthEvent(

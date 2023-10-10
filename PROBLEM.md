@@ -53,3 +53,37 @@ Node version: v18.18.0
 error Command failed with exit code 1.
 info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 ```
+
+# Solution
+`yarn install` then delete the following files
+- `node_modules/@aws-amplify/auth/lib/urlListener.d.ts`
+- `node_modules/@aws-amplify/auth/lib/urlListener.js`
+- `node_modules/@aws-amplify/auth/lib/urlListener.js.map`
+- `node_modules/@aws-amplify/auth/lib/urlListener.native.js`
+- `node_modules/@aws-amplify/auth/lib/urlListener.native.js.map`
+- `node_modules/@aws-amplify/auth/src/urlListener.native.ts`
+- `/node_modules/@aws-amplify/auth/src/urlListener.ts`
+
+Comment out the following lines in these files
+- `node_modules/@aws-amplify/auth/lib/Auth.js`
+- `node_modules/@aws-amplify/auth/src/Auth.ts`
+
+```
+var usedResponseUrls_1 = {};
+urlListener_1.default(function (_a) {
+    var url = _a.url;
+    if (usedResponseUrls_1[url]) {
+        return;
+    }
+    usedResponseUrls_1[url] = true;
+    _this._handleAuthResponse(url);
+});
+```
+Add `patch-package` as a dev dependency
+- `yarn add --dev patch-package`
+
+Create a patch file
+- `npx patch-package @aws-amplify/auth`
+
+Add the following to the `scripts` section in `package.json`
+- `"postinstall": "patch-package"`
